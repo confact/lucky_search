@@ -17,7 +17,7 @@ class LuckySearch::RecordIndexer
   end
 
   def self.document_name(klass : Class) : String
-    Avram::TableFor.table_for(klass)
+    Utils.document_name(klass)
   end
 
   def self.index(klass : Class, id, search_data)
