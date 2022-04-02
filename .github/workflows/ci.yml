@@ -91,3 +91,6 @@ jobs:
 
       - name: Run tests
         run: crystal spec
+        with:
+          LUCKY_ENV: test
+          DB_HOST: postgres
