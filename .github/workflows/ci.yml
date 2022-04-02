@@ -40,6 +40,21 @@ jobs:
   RunSpecs:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:13-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USERNAME: postgres
+        ports:
+          - 5432:5432
+       # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     strategy:
       fail-fast: true
       matrix:
@@ -65,9 +80,6 @@ jobs:
           host node port: 9300
           node port: 9300
           discovery type: 'single-node'
-      - uses: harmon758/postgresql-action@v1
-        with:
-          postgresql version: '12'
       - uses: actions/checkout@v2.4.0
 
       - uses: oprypin/install-crystal@v1
@@ -93,4 +105,6 @@ jobs:
         run: crystal spec
         env:
           LUCKY_ENV: test
-          DB_HOST: postgres
+          DB_HOST: localhost
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
