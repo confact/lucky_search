@@ -1,4 +1,6 @@
 # lucky_search
+This is a WIP - feel free to help out!
+
 
 Easy plugin and play elasticsearch library for Lucky framework. Highly inspired by [Searchkick](https://github.com/ankane/searchkick) but are still lacking some of the advanced features searchkick have. Now you can just index and search.
 
