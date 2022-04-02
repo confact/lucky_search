@@ -229,11 +229,7 @@ class LuckySearch::Elastic
                  raise "Unsupported method: #{method}"
                end
 
-    if response.success?
-      true
-    else
-      raise Error::ElasticQueryError.new("ES error: #{response.status_code}\n#{response.body}")
-    end
+    response.success?
   end
 
   # Normalize params to string and encode
@@ -282,17 +278,26 @@ class LuckySearch::Elastic
 
   private def self.elastic_connection
     # FIXME: ES_TLS not being pulled from env in habitat settings
-    tls_context = if ENV["ES_TLS"]? == "true"
+    uri = settings.uri
+    tls = settings.tls? || uri.try(&.scheme) == "https"
+
+    tls_context = if tls
                     context = OpenSSL::SSL::Context::Client.new
                     context.verify_mode = OpenSSL::SSL::VerifyMode::NONE
                     context
+                  else
+                    nil
                   end
 
-    if (uri = settings.uri).nil?
-      PoolHTTP.new(host: settings.host, port: settings.port, tls: tls_context)
-    else
-      PoolHTTP.new(uri: uri, tls: tls_context)
+    pool = if uri.nil?
+             PoolHTTP.new(host: settings.host, port: settings.port, tls: tls_context)
+           else
+             PoolHTTP.new(uri: uri, tls: tls_context)
+           end
+    if uri && (uri.password || uri.user)
+      pool.basic_auth(uri.user, uri.password)
     end
+    pool
   end
 
   private class PoolHTTP < HTTP::Client
