@@ -5,16 +5,15 @@ module LuckySearch
     def self.generate_schema(search_data)
       mappings = generate_field_type(search_data)
 
-
       {
         "settings" => {
           "number_of_shards"   => 1,
           "number_of_replicas" => 1,
-          "index" => {
-            "max_ngram_diff" => 49,
-            "max_shingle_diff" => 4
+          "index"              => {
+            "max_ngram_diff"   => 49,
+            "max_shingle_diff" => 4,
           },
-          "analysis"           => analysis,
+          "analysis" => analysis,
         },
         "mappings" => {
           "properties" => mappings,
