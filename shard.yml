@@ -1,0 +1,17 @@
+name: lucky_search
+version: 0.1.0
+
+authors:
+  - Håkan Nylén <hakan@dun.se>
+
+crystal: 1.1.0
+
+license: MIT
+
+dependencies:
+  habitat:
+    github: luckyframework/habitat
+  avram:
+    github: luckyframework/avram
+  lucky_env:
+    github: luckyframework/lucky_env

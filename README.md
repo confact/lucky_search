@@ -1,6 +1,9 @@
 # lucky_search
 
-Easy plugin and play elasticsearch library for Lucky framework. Highly inspired by searchkick but are still lacking some of the advanced features searchkick have. Now you can just index and search.
+Easy plugin and play elasticsearch library for Lucky framework. Highly inspired by [Searchkick](https://github.com/ankane/searchkick) but are still lacking some of the advanced features searchkick have. Now you can just index and search.
+
+I also got a lot of help and borrowed code from [neuroplastic](https://github.com/place-labs/neuroplastic) - Thank you Place Labs!
+I also borrowed some of the analysis from Searchkick to get stemming and so on. Thank you Searchkick!
 
 ## Installation
 
@@ -21,7 +24,7 @@ require "lucky_search"
 ```
 to the shards.cr
 
-Add `include Searchable` to the operations you want to add to elaticsearch. It adds hooks to update the index on saves and delete on delete.
+Add `include Searchable` to the operations for the models you want to add to elaticsearch. It adds hooks to update the index on saves and delete on delete.
 You also need to have a `search_data` method in the model class that returns an hash of data you want to index. Example:
 ```crystal
 
@@ -34,20 +37,11 @@ def search_data
 end
 ``` 
 
-Right now it has to be an flat data (no hash in the hash)
-
-index all your data:
-```
-lucky search:reindex user
-```
-
 Now you need to have a query class you can use for search, example of a classname would be `SearchUser < User::BaseQuery` 
 
 Include `LuckySearch` in the query.
 
-you can run `lucky gen.search User` to get the class above, `SearchUser` with the included `LuckySearch` already.
-
-You can now search by: `SearchUser.search(data)`
+You can now search by: `SearchUser.search("name")`
 
 ## Development
 
