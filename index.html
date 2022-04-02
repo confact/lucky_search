@@ -136,8 +136,18 @@
       
     </li>
   
-  <li class=" " data-id="lucky_search/LuckySearch/RecordIndexer" data-name="luckysearch::recordindexer">
+  <li class="parent " data-id="lucky_search/LuckySearch/RecordIndexer" data-name="luckysearch::recordindexer">
       <a href="LuckySearch/RecordIndexer.html">RecordIndexer</a>
+      
+        <ul>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/RecordIndexer/SearchValue" data-name="luckysearch::recordindexer::searchvalue">
+      <a href="LuckySearch/RecordIndexer/SearchValue.html">SearchValue</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -209,9 +219,9 @@ You also need to have a <code>search_data</code> method in the model class that 
 <pre><code class="language-crystal">
 <span class="k">def</span> <span class="m">search_data</span>
   {
-    name: name,
-    last_campaign: get_last_campaign,
-    age: age
+    <span class="s">&quot;name&quot;</span> =&gt; name,
+    <span class="s">&quot;last_campaign&quot;</span> =&gt; get_last_campaign,
+    <span class="s">&quot;age&quot;</span> =&gt; age
   }
 <span class="k">end</span></code></pre>
 <p>Now you need to have a query class you can use for search, example of a classname would be <code>SearchUser &lt; User::BaseQuery</code></p>
