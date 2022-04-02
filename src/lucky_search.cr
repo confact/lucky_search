@@ -21,12 +21,10 @@ module LuckySearch
 
   private macro __generate_accessor
     class_getter(lucky_search_handler) { LuckySearch::SimpleQuery({{@type}}).new(self.new.table_name) }
-    
     def self.search(q : String, params = {} of Symbol => String, filters = nil)
       query = lucky_search_handler.query(q, params, filters)
       lucky_search_handler.search(query)
     end
-    
     def self.search(params = {} of Symbol => String, filters = nil)
       query = lucky_search_handler.query(params, filters)
       lucky_search_handler.search(query)

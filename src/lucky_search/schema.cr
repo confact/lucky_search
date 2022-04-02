@@ -5,7 +5,7 @@ module LuckySearch
     def self.generate_schema(search_data)
       mappings = generate_field_type(search_data)
 
-      return {
+      {
         "settings" => {
           "number_of_shards"   => 1,
           "number_of_replicas" => 1,

@@ -65,6 +65,9 @@ jobs:
           host node port: 9300
           node port: 9300
           discovery type: 'single-node'
+      - uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: '12'
       - uses: actions/checkout@v2.4.0
 
       - uses: oprypin/install-crystal@v1
