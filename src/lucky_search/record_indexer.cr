@@ -1,8 +1,8 @@
 require "uuid"
+require "avram"
 
 class LuckySearch::RecordIndexer
   alias SearchValue = String | Int32 | Int64 | Bool | Time | Float32 | Float64 | UUID | Nil
-
   getter document_name : String
   getter id : Int64 | UUID
 
@@ -17,7 +17,7 @@ class LuckySearch::RecordIndexer
   end
 
   def self.document_name(klass : Class) : String
-    klass.name.split("::").last
+    Avram::TableFor.table_for(klass)
   end
 
   def self.index(klass : Class, id, search_data)
@@ -47,7 +47,7 @@ class LuckySearch::RecordIndexer
     if client.exists?(document_name, id)
       client.update(document_name, id, search_data)
     else
-      client.create(document_name, id, search_data)
+      client.update(document_name, id, search_data)
     end
   end
 
