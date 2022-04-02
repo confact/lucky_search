@@ -51,6 +51,11 @@
   <div class="types-list">
     <ul>
   
+  <li class=" " data-id="lucky_search/toplevel" data-name="top level namespace">
+      <a href="toplevel.html">Top Level Namespace</a>
+      
+    </li>
+  
   <li class="parent " data-id="lucky_search/LuckySearch" data-name="luckysearch">
       <a href="LuckySearch.html">LuckySearch</a>
       
@@ -156,7 +161,7 @@
       
     </li>
   
-  <li class=" " data-id="lucky_search/LuckySearch/SimpleQuery" data-name="luckysearch::simplequery(t)">
+  <li class=" " data-id="lucky_search/LuckySearch/SimpleQuery" data-name="luckysearch::simplequery(t, k)">
       <a href="LuckySearch/SimpleQuery.html">SimpleQuery</a>
       
     </li>
@@ -214,8 +219,13 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
 </a>Usage</h2>
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;lucky_search&quot;</span></code></pre>
 <p>to the shards.cr</p>
-<p>Add <code>include <a href="Searchable.html">Searchable</a></code> to the operations for the models you want to add to elaticsearch. It adds hooks to update the index on saves and delete on delete.
-You also need to have a <code>search_data</code> method in the model class that returns an hash of data you want to index. Example:</p>
+<h3><a id="operations-and-model" class="anchor" href="#operations-and-model">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Operations and Model</h3>
+<p>Add <code>include <a href="Searchable.html">Searchable</a></code> to the operations for the models you want to add to elaticsearch. It adds hooks to update the index on saves and delete on delete.</p>
+<p>You also need to have a <code>search_data</code> method in the model class that returns an hash of data you want to index. Example:</p>
 <pre><code class="language-crystal">
 <span class="k">def</span> <span class="m">search_data</span>
   {
@@ -224,9 +234,21 @@ You also need to have a <code>search_data</code> method in the model class that 
     <span class="s">&quot;age&quot;</span> =&gt; age
   }
 <span class="k">end</span></code></pre>
-<p>Now you need to have a query class you can use for search, example of a classname would be <code>SearchUser &lt; User::BaseQuery</code></p>
-<p>Include <code><a href="LuckySearch.html">LuckySearch</a></code> in the query.</p>
-<p>You can now search by: <code>SearchUser.search(&quot;name&quot;)</code></p>
+<p>Right now it has to be an flat data (no hash in the hash)</p>
+<p>index all your data:</p>
+<pre><code class="language-crystal">lucky search<span class="n">:reindex</span> user</code></pre>
+<h3><a id="query" class="anchor" href="#query">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Query</h3>
+<p>To do searches we use Lucky's query classes. We created a macro to generate methods for you.</p>
+<p>Use existing query or create a new <code>SearchUser</code> query class.</p>
+<p>add <code><a href="toplevel.html#luckySearchQuery%28model%29-macro">luckySearchQuery(model)</a></code> to the class, example below:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">UserQuery</span> <span class="o">&lt;</span> <span class="t">Event</span><span class="t">::</span><span class="t">BaseQuery</span>
+  luckySearchQuery(<span class="t">Event</span>)
+<span class="k">end</span></code></pre>
+<p>You can now search by: <code>UserQuery.search(&quot;name&quot;)</code></p>
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
