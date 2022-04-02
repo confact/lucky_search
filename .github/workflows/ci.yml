@@ -101,6 +101,16 @@ jobs:
         if: steps.crystal-cache.outputs.cache-hit != 'true'
         run: shards check || shards install --ignore-crystal-version
 
+      - name: Install PostgreSQL client
+        run: |
+          apt-get update
+          apt-get install --yes postgresql-client
+
+      - name: Setup database
+        run: psql -h localhost -U postgres -c 'CREATE DATABASE "lucky_search_test";'
+        env:
+          PGPASSWORD: postgres
+
       - name: Run tests
         run: crystal spec
         env:
