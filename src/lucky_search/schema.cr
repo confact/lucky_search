@@ -11,7 +11,7 @@ module LuckySearch
           "number_of_replicas" => 1,
           "analysis"           => analysis,
         },
-        "mappings": {
+        "mappings" => {
           "properties" => mappings,
         },
       }
