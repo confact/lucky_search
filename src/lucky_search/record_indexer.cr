@@ -1,15 +1,18 @@
 require "uuid"
 
 class LuckySearch::RecordIndexer
+  alias SearchValue = String | Int32 | Int64 | Bool | Time | Float32 | Float64 | UUID | Nil
+
   getter document_name : String
   getter id : Int64 | UUID
 
   # the data to index
-  getter search_data : Hash(String, String | Int32 | Int64 | Float32 | Float64 | Bool | Nil)
+  getter search_data : Hash(String, SearchValue)
 
   getter client : Elastic
 
-  def initialize(@document_name, @id, @search_data)
+  def initialize(@document_name, @id, search_data)
+    @search_data = Hash(String, SearchValue).new.merge(search_data)
     @client = Elastic.new
   end
 

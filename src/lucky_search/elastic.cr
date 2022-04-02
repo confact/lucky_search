@@ -131,7 +131,7 @@ class LuckySearch::Elastic
     path = "/#{index}/_doc/#{id}"
     method = "HEAD"
 
-    perform_request_bool(method: method, path: path).to_bool
+    perform_request_bool(method: method, path: path)
   end
 
   def delete(index, id)
@@ -159,7 +159,7 @@ class LuckySearch::Elastic
     path = "/#{index}"
     method = "HEAD"
 
-    perform_request_bool(method: method, path: path).to_bool
+    perform_request_bool(method: method, path: path)
   end
 
   def delete_index(index)

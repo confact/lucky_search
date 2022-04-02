@@ -1,6 +1,6 @@
 module LuckySearch
   class Schema
-    getter language = "English"
+    class_getter language = "English"
 
     def self.generate_schema(search_data)
       mappings = generate_field_type(search_data)
@@ -45,7 +45,7 @@ module LuckySearch
     end
 
     # analysis from searchkick
-    def analysis
+    def self.analysis
       {
         analyzer: {
           searchkick_keyword: {

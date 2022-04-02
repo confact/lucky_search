@@ -32,9 +32,9 @@ You also need to have a `search_data` method in the model class that returns an 
 
 def search_data
   {
-    name: name,
-    last_campaign: get_last_campaign,
-    age: age
+    "name" => name,
+    "last_campaign" => get_last_campaign,
+    "age" => age
   }
 end
 ``` 
