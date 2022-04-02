@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 1.2.2">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="lucky_search">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="lucky_search">
+  <title>LuckySearch::SimpleQuery(T) - lucky_search main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          lucky_search
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="lucky_search/LuckySearch" data-name="luckysearch">
+      <a href="../LuckySearch.html">LuckySearch</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="lucky_search/LuckySearch/Elastic" data-name="luckysearch::elastic">
+      <a href="../LuckySearch/Elastic.html">Elastic</a>
+      
+        <ul>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Elastic/HabitatSettings" data-name="luckysearch::elastic::habitatsettings">
+      <a href="../LuckySearch/Elastic/HabitatSettings.html">HabitatSettings</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="lucky_search/LuckySearch/Error" data-name="luckysearch::error">
+      <a href="../LuckySearch/Error.html">Error</a>
+      
+        <ul>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Error/ElasticQueryError" data-name="luckysearch::error::elasticqueryerror">
+      <a href="../LuckySearch/Error/ElasticQueryError.html">ElasticQueryError</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Error/MalformedQuery" data-name="luckysearch::error::malformedquery">
+      <a href="../LuckySearch/Error/MalformedQuery.html">MalformedQuery</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="lucky_search/LuckySearch/Query" data-name="luckysearch::query">
+      <a href="../LuckySearch/Query.html">Query</a>
+      
+        <ul>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Query/Filter" data-name="luckysearch::query::filter">
+      <a href="../LuckySearch/Query/Filter.html">Filter</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Query/FilterTerm" data-name="luckysearch::query::filterterm">
+      <a href="../LuckySearch/Query/FilterTerm.html">FilterTerm</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Query/FilterValue" data-name="luckysearch::query::filtervalue">
+      <a href="../LuckySearch/Query/FilterValue.html">FilterValue</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Query/RangeQuery" data-name="luckysearch::query::rangequery">
+      <a href="../LuckySearch/Query/RangeQuery.html">RangeQuery</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Query/RangeValue" data-name="luckysearch::query::rangevalue">
+      <a href="../LuckySearch/Query/RangeValue.html">RangeValue</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Query/Sort" data-name="luckysearch::query::sort">
+      <a href="../LuckySearch/Query/Sort.html">Sort</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Query/Subfilter" data-name="luckysearch::query::subfilter">
+      <a href="../LuckySearch/Query/Subfilter.html">Subfilter</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/RecordIndexer" data-name="luckysearch::recordindexer">
+      <a href="../LuckySearch/RecordIndexer.html">RecordIndexer</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Schema" data-name="luckysearch::schema">
+      <a href="../LuckySearch/Schema.html">Schema</a>
+      
+    </li>
+  
+  <li class=" current" data-id="lucky_search/LuckySearch/SimpleQuery" data-name="luckysearch::simplequery(t)">
+      <a href="../LuckySearch/SimpleQuery.html">SimpleQuery</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/LuckySearch/Utils" data-name="luckysearch::utils">
+      <a href="../LuckySearch/Utils.html">Utils</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="lucky_search/Searchable" data-name="searchable">
+      <a href="../Searchable.html">Searchable</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> LuckySearch::SimpleQuery(T)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../LuckySearch/SimpleQuery.html">LuckySearch::SimpleQuery(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L4" target="_blank">
+        lucky_search/simple_query.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="COUNT">
+        <strong>COUNT</strong> = <code><span class="s">&quot;count&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="HITS">
+        <strong>HITS</strong> = <code><span class="s">&quot;hits&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="ID">
+        <strong>ID</strong> = <code><span class="s">&quot;_id&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SCORE">
+        <strong>SCORE</strong> = <code>[<span class="s">&quot;_score&quot;</span>]</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="SOURCE">
+        <strong>SOURCE</strong> = <code><span class="s">&quot;_source&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TOTAL">
+        <strong>TOTAL</strong> = <code><span class="s">&quot;total&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TYPE">
+        <strong>TYPE</strong> = <code><span class="s">&quot;_document_type&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="VALUE">
+        <strong>VALUE</strong> = <code><span class="s">&quot;value&quot;</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28elastic_index%3AString%3F%3Dnil%2Cdocument_name%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(elastic_index : String? = <span class="n">nil</span>, document_name : String? = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#client-instance-method" class="signature"><strong>#client</strong></a>
+        
+          <div class="summary"><p>Yields the elasticsearch client</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#count%28builder%29-instance-method" class="signature"><strong>#count</strong>(builder)</a>
+        
+          <div class="summary"><p>Performs a count query against an index</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#elastic_document_name%3AString-instance-method" class="signature"><strong>#elastic_document_name</strong> : String</a>
+        
+          <div class="summary"><p>Document type defaults to class name without namespace</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#elastic_index%3AString-instance-method" class="signature"><strong>#elastic_index</strong> : String</a>
+        
+          <div class="summary"><p>Index defaults to avram table name</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#generate_body%28builder%29-instance-method" class="signature"><strong>#generate_body</strong>(builder)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query%28q%3AString%2Cparams%3D%7B%7DofSymbol%3D%3EString%2Cfilters%3Dnil%29-instance-method" class="signature"><strong>#query</strong>(q : String, params = {} <span class="k">of</span> <span class="t">Symbol</span> =&gt; <span class="t">String</span>, filters = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#query%28params%3D%7B%7DofSymbol%3D%3EString%2Cfilters%3Dnil%29-instance-method" class="signature"><strong>#query</strong>(params = {} <span class="k">of</span> <span class="t">Symbol</span> =&gt; <span class="t">String</span>, filters = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Safely build the query</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#search%28builder%29-instance-method" class="signature"><strong>#search</strong>(builder)</a>
+        
+          <div class="summary"><p>Query elasticsearch with a query builder object</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#search%28builder%2C%26block%3AProc%28T%2CT%3F%29%29-instance-method" class="signature"><strong>#search</strong>(builder, &block : Proc(T, T?))</a>
+        
+          <div class="summary"><p>Query elasticsearch with a query builder object, accepts a formatter block Allows annotation/conversion of records using data from the model.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(elastic_index:String?=nil,document_name:String?=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(elastic_index : String? = <span class="n">nil</span>, document_name : String? = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28elastic_index%3AString%3F%3Dnil%2Cdocument_name%3AString%3F%3Dnil%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="client-instance-method">
+      <div class="signature">
+        
+        def <strong>client</strong>
+
+        <a class="method-permalink" href="#client-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Yields the elasticsearch client</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="count(builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>count</strong>(builder)
+
+        <a class="method-permalink" href="#count%28builder%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Performs a count query against an index</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L50" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="elastic_document_name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>elastic_document_name</strong> : String
+
+        <a class="method-permalink" href="#elastic_document_name%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Document type defaults to class name without namespace</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="elastic_index:String-instance-method">
+      <div class="signature">
+        
+        def <strong>elastic_index</strong> : String
+
+        <a class="method-permalink" href="#elastic_index%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Index defaults to avram table name</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="generate_body(builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>generate_body</strong>(builder)
+
+        <a class="method-permalink" href="#generate_body%28builder%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L112" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query(q:String,params={}ofSymbol=&gt;String,filters=nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>query</strong>(q : String, params = {} <span class="k">of</span> <span class="t">Symbol</span> =&gt; <span class="t">String</span>, filters = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#query%28q%3AString%2Cparams%3D%7B%7DofSymbol%3D%3EString%2Cfilters%3Dnil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L39" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="query(params={}ofSymbol=&gt;String,filters=nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>query</strong>(params = {} <span class="k">of</span> <span class="t">Symbol</span> =&gt; <span class="t">String</span>, filters = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#query%28params%3D%7B%7DofSymbol%3D%3EString%2Cfilters%3Dnil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Safely build the query</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="search(builder)-instance-method">
+      <div class="signature">
+        
+        def <strong>search</strong>(builder)
+
+        <a class="method-permalink" href="#search%28builder%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Query elasticsearch with a query builder object</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="search(builder,&amp;block:Proc(T,T?))-instance-method">
+      <div class="signature">
+        
+        def <strong>search</strong>(builder, &block : Proc(T, T?))
+
+        <a class="method-permalink" href="#search%28builder%2C%26block%3AProc%28T%2CT%3F%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Query elasticsearch with a query builder object, accepts a formatter block
+Allows annotation/conversion of records using data from the model.
+Nils are removed from the list.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/57efcc1a2760a07444a27cc8536c0d5d2886b47c/src/lucky_search/simple_query.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
