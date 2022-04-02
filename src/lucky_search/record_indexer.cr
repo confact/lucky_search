@@ -5,7 +5,7 @@ class LuckySearch::RecordIndexer
   getter id : Int64 | UUID
 
   # the data to index
-  getter search_data : Hash(String, String | Int32 | Int64 | Float32 | Float64 | Bool)
+  getter search_data : Hash(String, String | Int32 | Int64 | Float32 | Float64 | Bool | Nil)
 
   getter client : Elastic
 
