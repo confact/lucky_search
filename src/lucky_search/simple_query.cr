@@ -1,7 +1,7 @@
 require "./elastic"
 require "./utils"
 
-class LuckySearch::SimpleQuery(T)
+class LuckySearch::SimpleQuery(T, K)
   COUNT  = "count"
   SCORE  = ["_score"]
   ID     = "_id"
@@ -106,7 +106,7 @@ class LuckySearch::SimpleQuery(T)
   private def get_records(result)
     ids = result.dig?(HITS, HITS).try(&.as_a.compact_map(&.[ID].as_s?))
 
-    ids ? T.new.id.in(ids) : [] of T
+    ids ? T.new.id.in(ids) : [] of K
   end
 
   def generate_body(builder)

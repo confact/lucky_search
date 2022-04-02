@@ -155,7 +155,7 @@ module LuckySearch
           searchkick_stemmer: {
             # use stemmer if language is lowercase, snowball otherwise
             type:     language == language.to_s.downcase ? "stemmer" : "snowball",
-            language: "English",
+            language: language,
           },
         },
         char_filter: {

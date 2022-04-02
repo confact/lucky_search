@@ -26,7 +26,10 @@ require "lucky_search"
 ```
 to the shards.cr
 
+### Operations and Model
 Add `include Searchable` to the operations for the models you want to add to elaticsearch. It adds hooks to update the index on saves and delete on delete.
+
+
 You also need to have a `search_data` method in the model class that returns an hash of data you want to index. Example:
 ```crystal
 
@@ -39,11 +42,27 @@ def search_data
 end
 ``` 
 
-Now you need to have a query class you can use for search, example of a classname would be `SearchUser < User::BaseQuery` 
+Right now it has to be an flat data (no hash in the hash)
 
-Include `LuckySearch` in the query.
+index all your data:
+```
+lucky search:reindex user
+```
 
-You can now search by: `SearchUser.search("name")`
+### Query
+To do searches we use Lucky's query classes. We created a macro to generate methods for you.
+
+Use existing query or create a new `SearchUser` query class.
+
+add `luckySearchQuery(model)` to the class, example below:
+
+```crystal
+class UserQuery < Event::BaseQuery
+  luckySearchQuery(Event)
+end
+``` 
+
+You can now search by: `UserQuery.search("name")`
 
 ## Development
 
