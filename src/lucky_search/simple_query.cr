@@ -19,7 +19,7 @@ class LuckySearch::SimpleQuery(T, K)
   getter elastic_document_name : String
 
   def initialize(elastic_index : String? = nil, document_name : String? = nil)
-    @elastic_document_name = document_name ? document_name : Utils.document_name(elastic_index)
+    @elastic_document_name = document_name ? document_name : Utils.document_name(K)
     @elastic_index = elastic_index
   end
 

@@ -7,7 +7,7 @@ module LuckySearch
 end
 
 macro luckySearchQuery(model)
-  class_getter(lucky_search_handler) { LuckySearch::SimpleQuery({{@type}}, {{ model }}).new({{model}}.class.name)) }
+  class_getter(lucky_search_handler) { LuckySearch::SimpleQuery({{@type}}, {{ model }}).new({{model}}.name) }
   def self.search(q : String, params = {} of Symbol => String, filters = nil)
     query = lucky_search_handler.query(q, params, filters)
     lucky_search_handler.search(query)
