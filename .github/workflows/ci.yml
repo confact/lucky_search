@@ -107,7 +107,28 @@ jobs:
           sudo apt-get install --yes postgresql-client
 
       - name: Setup database
-        run: psql -h localhost -U postgres -c 'CREATE DATABASE "lucky_search_test";'
+        run: |
+          psql -h localhost -U postgres -c 'CREATE DATABASE "lucky_search_test";'
+          psql -h localhost -U postgres -c 'CREATE TABLE `basics` (
+              `id` INT NOT NULL AUTO_INCREMENT,
+              `name` VARCHAR(200),
+              PRIMARY KEY (`id`)
+            );'
+          psql -h localhost -U postgres -c 'CREATE TABLE `goats` (
+              `id` INT NOT NULL AUTO_INCREMENT,
+              `name` VARCHAR(200),
+              `teeth` INT,
+              `job` VARCHAR(200),
+              PRIMARY KEY (`id`)
+            );'
+          psql -h localhost -U postgres -c 'CREATE TABLE `children` (
+              `id` INT NOT NULL AUTO_INCREMENT,
+              `visits` TEXT,
+              `age` INT,
+              `hoof_treatment` VARCHAR(200),
+              `goat_id` INT
+              PRIMARY KEY (`id`)
+            );'
         env:
           PGPASSWORD: postgres
 
