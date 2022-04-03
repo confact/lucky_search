@@ -13,6 +13,7 @@ class LuckySearch::RecordIndexer
   def initialize(@document_name)
     @id = 0
     @search_data = Hash(String, SearchValue).new
+    @client = Elastic.new
   end
 
   def initialize(@document_name, @id, search_data)
