@@ -39,9 +39,11 @@ We use ENV variables for the elasticsearch settings:
 - ELASTIC_CONN_POOL_TIMEOUT   - default: 5.0
 
 You can also set this in a config file, like below:
+```crystal
 LuckySearch::Client.configure do |config|
   config.uri = URI.parse("https://elastic:PrHfasu6fssfsd@localhost:9200")
 end
+```
 
 config variables for the env above are:
 - uri
