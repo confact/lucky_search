@@ -3,6 +3,7 @@ require "./spec_helper"
 describe LuckySearch::SimpleQuery do
   describe "#search" do
     it "performs a generic search" do
+      LuckySearch::RecordIndexer.new("test_basics").create_index
       query = BasicQuery.lucky_search_handler.query
       records = BasicQuery.search(query)
       records[:total].should eq 1
@@ -23,6 +24,7 @@ describe LuckySearch::SimpleQuery do
     # end
 
     it "#must_not on a embedded document" do
+      LuckySearch::RecordIndexer.new("test_children").create_index
       elastic = ChildQuery.lucky_search_handler
       query = elastic.query
       query.must_not({"visits" => ["monthly"]})
@@ -32,6 +34,7 @@ describe LuckySearch::SimpleQuery do
     end
 
     it "#must_not on a embedded document" do
+      LuckySearch::RecordIndexer.new("test_children").create_index
       elastic = ChildQuery.lucky_search_handler
       query = elastic.query
       query.must({"visits" => ["monthly", "yearly"]})

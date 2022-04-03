@@ -2,7 +2,6 @@ require "uuid"
 require "avram"
 
 class LuckySearch::RecordIndexer
-  alias SearchValue = String | Int32 | Int64 | Bool | Time | Float32 | Float64 | UUID | Nil
   getter document_name : String
   getter id : Int64 | UUID
 
@@ -10,6 +9,11 @@ class LuckySearch::RecordIndexer
   getter search_data : Hash(String, SearchValue)
 
   getter client : Elastic
+
+  def initialize(@document_name)
+    @id = 0
+    @search_data = Hash(String, SearchValue).new
+  end
 
   def initialize(@document_name, @id, search_data)
     @search_data = Hash(String, SearchValue).new.merge(search_data)
