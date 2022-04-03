@@ -36,7 +36,7 @@ describe LuckySearch::SimpleQuery do
     it "#must_not on a embedded document" do
       # LuckySearch::RecordIndexer.new("test_children").create_index
       child = ChildFactory.create
-      child = SaveChild.update!(child, visits: "monthly")
+      SaveChild.update!(child, visits: "monthly")
       LuckySearch::Client.new.refresh("test_children")
       query = ChildQuery.search_empty_query
       query.must_not({"visits" => ["monthly"]})
@@ -48,7 +48,7 @@ describe LuckySearch::SimpleQuery do
     it "#should on a embedded document" do
       # LuckySearch::RecordIndexer.new("test_children").create_index
       child = ChildFactory.create
-      child = SaveChild.update!(child, visits: "monthly")
+      SaveChild.update!(child, visits: "monthly")
       LuckySearch::Client.new.refresh("test_children")
       query = ChildQuery.search_empty_query
       query.should({"visits" => ["monthly", "yearly"]})
