@@ -20,7 +20,7 @@ class LuckySearch::SimpleQuery(T, K)
 
   def initialize(elastic_index : String? = nil, document_name : String? = nil)
     @elastic_document_name = document_name ? document_name : Utils.document_name(K)
-    @elastic_index = elastic_index
+    @elastic_index = Utils.document_name(elastic_index)
   end
 
   # Yields the elasticsearch client
