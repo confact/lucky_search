@@ -100,11 +100,13 @@ jobs:
       - name: Install shards
         if: steps.crystal-cache.outputs.cache-hit != 'true'
         run: shards check || shards install --ignore-crystal-version
-
+      - name: Build lucky_tasks
+        if: steps.crystal-cache.outputs.cache-hit != 'true'
+        run: crystal build tasks.cr -o ./lucky_tasks
       - name: Run lucky task
         run: |
-          lucky db:create 
-          lucky db:migrate
+          ./lucky_tasks db:create 
+          ./lucky_tasks db:migrate
         env:
           LUCKY_ENV: test
           DB_HOST: localhost
