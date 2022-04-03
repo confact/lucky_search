@@ -231,10 +231,10 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
 <li>ELASTIC_IDLE_POOL           - default: 10</li>
 <li>ELASTIC_CONN_POOL_TIMEOUT   - default: 5.0</li>
 </ul>
-<p>You can also set this in a config file, like below:
-LuckySearch::Client.configure do |config|
-config.uri = URI.parse(&quot;https://elastic:PrHfasu6fssfsd@localhost:9200&quot;)
-end</p>
+<p>You can also set this in a config file, like below:</p>
+<pre><code class="language-crystal"><span class="t">LuckySearch</span><span class="t">::</span><span class="t">Client</span>.configure <span class="k">do</span> <span class="o">|</span>config<span class="o">|</span>
+  config.uri <span class="o">=</span> <span class="t">URI</span>.parse(<span class="s">&quot;https://elastic:PrHfasu6fssfsd@localhost:9200&quot;</span>)
+<span class="k">end</span></code></pre>
 <p>config variables for the env above are:</p>
 <ul>
 <li>uri</li>
