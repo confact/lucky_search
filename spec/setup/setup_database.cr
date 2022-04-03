@@ -1,5 +1,5 @@
-#Db::Create.new(quiet: true).call
-#Db::Migrate.new(quiet: true).call
+# Db::Create.new(quiet: true).call
+# Db::Migrate.new(quiet: true).call
 
 database_name = "lucky_search_#{LuckyEnv.environment}"
 

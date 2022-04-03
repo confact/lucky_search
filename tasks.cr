@@ -15,8 +15,8 @@ require "./spec/support/app_database"
 require "./spec/support/base_model"
 require "./spec/support/database"
 
-#require "./spec/support/models_spec"
-#require "./spec/support/operations_spec"
+# require "./spec/support/models_spec"
+# require "./spec/support/operations_spec"
 require "lucky_task"
 
 # You can add your own tasks here in the ./tasks folder
@@ -26,6 +26,6 @@ require "./tasks/**"
 require "./db/migrations/**"
 
 # Load Lucky tasks (dev, routes, etc.)
-#require "lucky/tasks/**"
+# require "lucky/tasks/**"
 
 LuckyTask::Runner.run

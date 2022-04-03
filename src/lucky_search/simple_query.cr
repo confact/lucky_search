@@ -31,7 +31,7 @@ class LuckySearch::SimpleQuery(T, K)
     builder = Query.new(params)
     builder.filter(filters) unless filters.nil?
 
-    #builder.filter({TYPE => [elastic_document_name]})
+    # builder.filter({TYPE => [elastic_document_name]})
 
     builder
   end
@@ -41,7 +41,7 @@ class LuckySearch::SimpleQuery(T, K)
     builder = Query.new(params)
     builder.filter(filters) unless filters.nil?
 
-    #builder.filter({TYPE => [elastic_document_name]})
+    # builder.filter({TYPE => [elastic_document_name]})
 
     builder
   end

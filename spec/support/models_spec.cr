@@ -9,7 +9,7 @@ class Basic < BaseModel
 
   def search_data
     {
-      "name" => name
+      "name" => name,
     }
   end
 end
@@ -23,9 +23,9 @@ class Goat < BaseModel
 
   def search_data
     {
-      "name" =>  name,
+      "name"  => name,
       "teeth" => teeth,
-      "job" =>   job,
+      "job"   => job,
     }
   end
 end
@@ -40,10 +40,10 @@ class Child < BaseModel
 
   def search_data
     {
-      "age" =>            age,
+      "age"            => age,
       "hoof_treatment" => hoof_treatment,
-      "visits" =>         visits,
-      "goat" =>           goat!.name,
+      "visits"         => visits,
+      "goat"           => goat!.name,
     }
   end
 end

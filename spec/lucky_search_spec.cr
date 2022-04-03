@@ -9,7 +9,7 @@ describe LuckySearch::SimpleQuery do
 
   describe "#search" do
     it "performs a generic search" do
-      #LuckySearch::RecordIndexer.new("test_basics").create_index
+      # LuckySearch::RecordIndexer.new("test_basics").create_index
       basic = BasicFactory.create
       basic = SaveBasic.update!(basic, name: "test basic wuut")
       indexed = LuckySearch::RecordIndexer.index(Basic, basic.id, basic.search_data)
@@ -34,7 +34,7 @@ describe LuckySearch::SimpleQuery do
     # end
 
     it "#must_not on a embedded document" do
-      #LuckySearch::RecordIndexer.new("test_children").create_index
+      # LuckySearch::RecordIndexer.new("test_children").create_index
       child = ChildFactory.create
       child = SaveChild.update!(child, visits: "monthly")
       LuckySearch::Client.new.refresh("test_children")
@@ -46,7 +46,7 @@ describe LuckySearch::SimpleQuery do
     end
 
     it "#should on a embedded document" do
-      #LuckySearch::RecordIndexer.new("test_children").create_index
+      # LuckySearch::RecordIndexer.new("test_children").create_index
       child = ChildFactory.create
       child = SaveChild.update!(child, visits: "monthly")
       LuckySearch::Client.new.refresh("test_children")

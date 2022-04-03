@@ -185,7 +185,6 @@ class LuckySearch::Client
     perform_request(method: method, path: path, body: body)
   end
 
-
   def empty_indices(indices : Array(String)? = nil)
     query = {
       query: {
