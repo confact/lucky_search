@@ -212,8 +212,45 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
     <use href="#octicon-link"/>
   </svg>
 </a>Usage</h2>
+<p>Add following</p>
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;lucky_search&quot;</span></code></pre>
 <p>to the shards.cr</p>
+<h3><a id="settings" class="anchor" href="#settings">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Settings</h3>
+<p>We use ENV variables for the elasticsearch settings:</p>
+<ul>
+<li>ELASTIC_URI                 - default: nil</li>
+<li>ELASTIC_HOST                - default: 127.0.0.1</li>
+<li>ELASTIC_PORT                - default: 9200</li>
+<li>ELASTIC_TLS                 - default: false</li>
+<li>ELASTIC_POOLED              - default: false</li>
+<li>ELASTIC_CONN_POOL           - default: 10</li>
+<li>ELASTIC_IDLE_POOL           - default: 10</li>
+<li>ELASTIC_CONN_POOL_TIMEOUT   - default: 5.0</li>
+</ul>
+<p>You can also set this in a config file, like below:
+LuckySearch::Client.configure do |config|
+config.uri = URI.parse(&quot;https://elastic:PrHfasu6fssfsd@localhost:9200&quot;)
+end</p>
+<p>config variables for the env above are:</p>
+<ul>
+<li>uri</li>
+<li>host</li>
+<li>port</li>
+<li>tls</li>
+<li>pooled</li>
+<li>pool_size</li>
+<li>idle_pool_size</li>
+<li>pool_timeout</li>
+</ul>
+<p>Good to know:</p>
+<ul>
+<li>TLS will be automatically set to true if uri is set and the scheme is <code>https</code></li>
+<li>we support basic auth in the URI</li>
+</ul>
 <h3><a id="operations-and-model" class="anchor" href="#operations-and-model">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -240,10 +277,21 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
 <p>To do searches we use Lucky's query classes. We created a macro to generate methods for you.</p>
 <p>Use existing query or create a new <code>SearchUser</code> query class.</p>
 <p>add <code><a href="toplevel.html#luckySearchQuery%28model%29-macro">luckySearchQuery(model)</a></code> to the class, example below:</p>
-<pre><code class="language-crystal"><span class="k">class</span> <span class="t">UserQuery</span> <span class="o">&lt;</span> <span class="t">Event</span><span class="t">::</span><span class="t">BaseQuery</span>
-  luckySearchQuery(<span class="t">Event</span>)
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">UserQuery</span> <span class="o">&lt;</span> <span class="t">User</span><span class="t">::</span><span class="t">BaseQuery</span>
+  luckySearchQuery(<span class="t">User</span>)
 <span class="k">end</span></code></pre>
 <p>You can now search by: <code>UserQuery.search(&quot;name&quot;)</code></p>
+<h3><a id="advanced-queries" class="anchor" href="#advanced-queries">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Advanced queries</h3>
+<p>Our Query class and wrapper around it comes from <a href="https://github.com/place-labs/neuroplastic">neuroplastic</a> and works similar, I have done some changes but works more or less the same.</p>
+<p>You take out a Query class and set the filters and so on and then send it in the search method:</p>
+<pre><code class="language-crystal">query <span class="o">=</span> <span class="t">UserQuery</span>.search_empty_query
+query.must({<span class="s">&quot;visits&quot;</span> =&gt; [<span class="s">&quot;monthly&quot;</span>]})
+records <span class="o">=</span> <span class="t">UserQuery</span>.search(query)</code></pre>
+<p>check more in the <a href="https://confact.github.io/lucky_search/LuckySearch/Query.html">Query documentation</a></p>
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -270,6 +318,7 @@ run the tests with <code>crystal spec</code></p>
 </a>Contributors</h2>
 <ul>
 <li><a href="https://github.com/confact">Håkan Nylén</a> - creator and maintainer</li>
+<li><a href="https://github.com/Caspiano">Caspian Baska</a> - creator and maintainer of Neuroplastic which this is paste on</li>
 </ul>
 </div>
 </body>
