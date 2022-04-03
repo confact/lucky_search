@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="lucky_search">
-  <title>LuckySearch::Elastic - lucky_search main</title>
+  <title>LuckySearch::Client - lucky_search main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -61,13 +61,13 @@
       
         <ul>
   
-  <li class="parent open current" data-id="lucky_search/LuckySearch/Elastic" data-name="luckysearch::elastic">
-      <a href="../LuckySearch/Elastic.html">Elastic</a>
+  <li class="parent open current" data-id="lucky_search/LuckySearch/Client" data-name="luckysearch::client">
+      <a href="../LuckySearch/Client.html">Client</a>
       
         <ul>
   
-  <li class=" " data-id="lucky_search/LuckySearch/Elastic/HabitatSettings" data-name="luckysearch::elastic::habitatsettings">
-      <a href="../LuckySearch/Elastic/HabitatSettings.html">HabitatSettings</a>
+  <li class=" " data-id="lucky_search/LuckySearch/Client/HabitatSettings" data-name="luckysearch::client::habitatsettings">
+      <a href="../LuckySearch/Client/HabitatSettings.html">HabitatSettings</a>
       
     </li>
   
@@ -185,12 +185,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> LuckySearch::Elastic
+  <span class="kind">class</span> LuckySearch::Client
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../LuckySearch/Elastic.html">LuckySearch::Elastic</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../LuckySearch/Client.html">LuckySearch::Client</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -245,8 +245,8 @@
   </h2>
   
     
-      <a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L6" target="_blank">
-        lucky_search/elastic.cr
+      <a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L7" target="_blank">
+        lucky_search/client.cr
       </a>
     
     <br/>
@@ -267,7 +267,7 @@
   <dl>
     
       <dt class="entry-const" id="HABITAT_SETTINGS">
-        <strong>HABITAT_SETTINGS</strong> = <code>[{decl: uri : <span class="t">URI</span> <span class="o">|</span> <span class="t">::</span><span class="t">Nil</span> <span class="o">=</span> (<span class="t">Elastic</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_URI&quot;</span>, <span class="s">&quot;ES_URI&quot;</span>)).try(<span class="o">&amp;</span>-&gt;<span class="t">URI</span>.parse(<span class="t">String</span>)), example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: host : <span class="t">String</span> <span class="o">=</span> (<span class="t">Elastic</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_HOST&quot;</span>, <span class="s">&quot;ES_HOST&quot;</span>)) || <span class="s">&quot;127.0.0.1&quot;</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: port : <span class="t">Int32</span> <span class="o">=</span> (<span class="t">Elastic</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_PORT&quot;</span>, <span class="s">&quot;ES_PORT&quot;</span>)).try(<span class="o">&amp;</span>.to_i) || <span class="n">9200</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: tls : <span class="t">Bool</span> <span class="o">=</span> (<span class="t">Elastic</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_TLS&quot;</span>, <span class="s">&quot;ES_TLS&quot;</span>)) <span class="o">==</span> <span class="s">&quot;true&quot;</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: pooled : <span class="t">Bool</span> <span class="o">=</span> (<span class="t">Elastic</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_POOLED&quot;</span>, <span class="s">&quot;ES_POOLED&quot;</span>)) <span class="o">==</span> <span class="s">&quot;true&quot;</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: pool_size : <span class="t">Int32</span> <span class="o">=</span> (<span class="t">Elastic</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_CONN_POOL&quot;</span>, <span class="s">&quot;ES_CONN_POOL&quot;</span>)).try(<span class="o">&amp;</span>.to_i) || <span class="t">NUM_INDICES</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: idle_pool_size : <span class="t">Int32</span> <span class="o">=</span> (<span class="t">Elastic</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_IDLE_POOL&quot;</span>, <span class="s">&quot;ES_IDLE_POOL&quot;</span>)).try(<span class="o">&amp;</span>.to_i) || (<span class="t">NUM_INDICES</span> <span class="o">//</span> <span class="n">4</span>), example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: pool_timeout : <span class="t">Float64</span> <span class="o">=</span> (<span class="t">Elastic</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_CONN_POOL_TIMEOUT&quot;</span>, <span class="s">&quot;ES_CONN_POOL_TIMEOUT&quot;</span>)).try(<span class="o">&amp;</span>.to_f64) || <span class="n">5.0</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}] <span class="k">of</span> <span class="t">Nil</span></code>
+        <strong>HABITAT_SETTINGS</strong> = <code>[{decl: uri : <span class="t">URI</span> <span class="o">|</span> <span class="t">::</span><span class="t">Nil</span> <span class="o">=</span> (<span class="t">Client</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_URI&quot;</span>, <span class="s">&quot;ES_URI&quot;</span>)).try(<span class="o">&amp;</span>-&gt;<span class="t">URI</span>.parse(<span class="t">String</span>)), example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: host : <span class="t">String</span> <span class="o">=</span> (<span class="t">Client</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_HOST&quot;</span>, <span class="s">&quot;ES_HOST&quot;</span>)) || <span class="s">&quot;127.0.0.1&quot;</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: port : <span class="t">Int32</span> <span class="o">=</span> (<span class="t">Client</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_PORT&quot;</span>, <span class="s">&quot;ES_PORT&quot;</span>)).try(<span class="o">&amp;</span>.to_i) || <span class="n">9200</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: tls : <span class="t">Bool</span> <span class="o">=</span> (<span class="t">Client</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_TLS&quot;</span>, <span class="s">&quot;ES_TLS&quot;</span>)) <span class="o">==</span> <span class="s">&quot;true&quot;</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: pooled : <span class="t">Bool</span> <span class="o">=</span> (<span class="t">Client</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_POOLED&quot;</span>, <span class="s">&quot;ES_POOLED&quot;</span>)) <span class="o">==</span> <span class="s">&quot;true&quot;</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: pool_size : <span class="t">Int32</span> <span class="o">=</span> (<span class="t">Client</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_CONN_POOL&quot;</span>, <span class="s">&quot;ES_CONN_POOL&quot;</span>)).try(<span class="o">&amp;</span>.to_i) || <span class="t">NUM_INDICES</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: idle_pool_size : <span class="t">Int32</span> <span class="o">=</span> (<span class="t">Client</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_IDLE_POOL&quot;</span>, <span class="s">&quot;ES_IDLE_POOL&quot;</span>)).try(<span class="o">&amp;</span>.to_i) || (<span class="t">NUM_INDICES</span> <span class="o">//</span> <span class="n">4</span>), example: <span class="n">nil</span>, validation: <span class="n">nil</span>}, {decl: pool_timeout : <span class="t">Float64</span> <span class="o">=</span> (<span class="t">Client</span>.env_with_deprecation(<span class="s">&quot;ELASTIC_CONN_POOL_TIMEOUT&quot;</span>, <span class="s">&quot;ES_CONN_POOL_TIMEOUT&quot;</span>)).try(<span class="o">&amp;</span>.to_f64) || <span class="n">5.0</span>, example: <span class="n">nil</span>, validation: <span class="n">nil</span>}] <span class="k">of</span> <span class="t">Nil</span></code>
       </dt>
       
     
@@ -342,6 +342,11 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#empty_indices%28indices%3AArray%28String%29%3F%3Dnil%29-instance-method" class="signature"><strong>#empty_indices</strong>(indices : Array(String)? = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#exists%3F%28index%2Cid%29%3ABool-instance-method" class="signature"><strong>#exists?</strong>(index, id) : Bool</a>
         
       </li>
@@ -358,6 +363,11 @@
     
       <li class="entry-summary">
         <a href="#perform_request_bool%28method%2Cpath%2Cparams%3Dnil%2Cbody%3Dnil%29%3ABool-instance-method" class="signature"><strong>#perform_request_bool</strong>(method, path, params = <span class="n">nil</span>, body = <span class="n">nil</span>) : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#refresh%28index%29-instance-method" class="signature"><strong>#refresh</strong>(index)</a>
         
       </li>
     
@@ -449,7 +459,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -465,7 +475,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -493,7 +503,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L104" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -509,7 +519,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L144" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L153" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -525,7 +535,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L172" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L181" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -541,7 +551,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L137" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L146" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -557,7 +567,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L165" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L174" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty_indices(indices:Array(String)?=nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>empty_indices</strong>(indices : Array(String)? = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#empty_indices%28indices%3AArray%28String%29%3F%3Dnil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L189" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -573,7 +599,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L139" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -589,7 +615,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L158" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L167" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -605,7 +631,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L179" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L205" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -621,7 +647,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L209" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L235" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="refresh(index)-instance-method">
+      <div class="signature">
+        
+        def <strong>refresh</strong>(index)
+
+        <a class="method-permalink" href="#refresh%28index%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L131" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -637,7 +679,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -653,7 +695,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -669,7 +711,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/confact/lucky_search/blob/16265b994e27677c994622d9b4e25e3b8a45571b/src/lucky_search/elastic.cr#L151" target="_blank">View source</a>]
+          [<a href="https://github.com/confact/lucky_search/blob/8d533c98a567c0422687f5758fca95028055e9be/src/lucky_search/client.cr#L160" target="_blank">View source</a>]
         
       </div>
     </div>
