@@ -1,6 +1,6 @@
 module Searchable
   macro included
-    after_save index_record
+    after_commit index_record
     after_delete remove_record
   end
 

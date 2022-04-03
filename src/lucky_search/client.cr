@@ -1,21 +1,22 @@
 require "habitat"
 require "db"
 require "http"
+require "./error"
 
 # borrowed from Neuroplastic - thank you Place Labs
-class LuckySearch::Elastic
+class LuckySearch::Client
   NUM_INDICES = 10
 
   # Settings for elastic client
   Habitat.create do
-    setting uri : URI? = Elastic.env_with_deprecation("ELASTIC_URI", "ES_URI").try(&->URI.parse(String))
-    setting host : String = Elastic.env_with_deprecation("ELASTIC_HOST", "ES_HOST") || "127.0.0.1"
-    setting port : Int32 = Elastic.env_with_deprecation("ELASTIC_PORT", "ES_PORT").try(&.to_i) || 9200
-    setting tls : Bool = Elastic.env_with_deprecation("ELASTIC_TLS", "ES_TLS") == "true"
-    setting pooled : Bool = Elastic.env_with_deprecation("ELASTIC_POOLED", "ES_POOLED") == "true"
-    setting pool_size : Int32 = Elastic.env_with_deprecation("ELASTIC_CONN_POOL", "ES_CONN_POOL").try(&.to_i) || NUM_INDICES
-    setting idle_pool_size : Int32 = Elastic.env_with_deprecation("ELASTIC_IDLE_POOL", "ES_IDLE_POOL").try(&.to_i) || NUM_INDICES // 4
-    setting pool_timeout : Float64 = Elastic.env_with_deprecation("ELASTIC_CONN_POOL_TIMEOUT", "ES_CONN_POOL_TIMEOUT").try(&.to_f64) || 5.0
+    setting uri : URI? = Client.env_with_deprecation("ELASTIC_URI", "ES_URI").try(&->URI.parse(String))
+    setting host : String = Client.env_with_deprecation("ELASTIC_HOST", "ES_HOST") || "127.0.0.1"
+    setting port : Int32 = Client.env_with_deprecation("ELASTIC_PORT", "ES_PORT").try(&.to_i) || 9200
+    setting tls : Bool = Client.env_with_deprecation("ELASTIC_TLS", "ES_TLS") == "true"
+    setting pooled : Bool = Client.env_with_deprecation("ELASTIC_POOLED", "ES_POOLED") == "true"
+    setting pool_size : Int32 = Client.env_with_deprecation("ELASTIC_CONN_POOL", "ES_CONN_POOL").try(&.to_i) || NUM_INDICES
+    setting idle_pool_size : Int32 = Client.env_with_deprecation("ELASTIC_IDLE_POOL", "ES_IDLE_POOL").try(&.to_i) || NUM_INDICES // 4
+    setting pool_timeout : Float64 = Client.env_with_deprecation("ELASTIC_CONN_POOL_TIMEOUT", "ES_CONN_POOL_TIMEOUT").try(&.to_f64) || 5.0
   end
 
   # The first argument will be treated as the correct environment variable.
@@ -96,7 +97,7 @@ class LuckySearch::Elastic
     end
 
     Log.debug { "performing search: params=#{params} body=#{body.to_json}" }
-
+    puts "performing search: path=#{path} params=#{params} body=#{body.to_json}"
     perform_request(method: method, path: path, params: params, body: body)
   end
 
@@ -125,6 +126,14 @@ class LuckySearch::Elastic
     params = arguments.to_h.select(valid_params)
 
     perform_request(method: method, path: path, params: params, body: body)
+  end
+
+  def refresh(index)
+    path = "/#{index}/_refresh"
+    method = "POST"
+    body = nil
+
+    perform_request_bool(method: method, path: path, body: body)
   end
 
   def exists?(index, id) : Bool
@@ -166,7 +175,7 @@ class LuckySearch::Elastic
     path = "/#{index}"
     method = "DELETE"
 
-    perform_request(method: method, path: path)
+    perform_request(method: method, path: path) if index_exists?(index)
   end
 
   def create_index(index, body)
@@ -176,25 +185,42 @@ class LuckySearch::Elastic
     perform_request(method: method, path: path, body: body)
   end
 
+
+  def empty_indices(indices : Array(String)? = nil)
+    query = {
+      query: {
+        match_all: {} of String => String,
+      },
+    }.to_json
+
+    url = if indices && !indices.empty?
+            "/#{indices.join(',')}/_delete_by_query"
+          else
+            "/_all/_delete_by_query"
+          end
+
+    perform_request_bool(method: "POST", path: url, body: query)
+  end
+
   def perform_request(method, path, params = nil, body = nil) : JSON::Any
     post_body = body.try(&.to_json)
     response = case method.upcase
                when "GET"
                  endpoint = "#{path}?#{normalize_params(params)}"
                  if post_body
-                   Elastic.client &.get(path: endpoint, body: post_body, headers: JSON_HEADER)
+                   Client.client &.get(path: endpoint, body: post_body, headers: JSON_HEADER)
                  else
-                   Elastic.client &.get(path: endpoint)
+                   Client.client &.get(path: endpoint)
                  end
                when "POST"
-                 Elastic.client &.post(path: path, body: post_body, headers: JSON_HEADER)
+                 Client.client &.post(path: path, body: post_body, headers: JSON_HEADER)
                when "PUT"
-                 Elastic.client &.put(path: path, body: post_body, headers: JSON_HEADER)
+                 Client.client &.put(path: path, body: post_body, headers: JSON_HEADER)
                when "DELETE"
                  endpoint = "#{path}?#{normalize_params(params)}"
-                 Elastic.client &.delete(path: endpoint)
+                 Client.client &.delete(path: endpoint)
                when "HEAD"
-                 Elastic.client &.head(path: path)
+                 Client.client &.head(path: path)
                else
                  raise "Unsupported method: #{method}"
                end
@@ -212,19 +238,19 @@ class LuckySearch::Elastic
                when "GET"
                  endpoint = "#{path}?#{normalize_params(params)}"
                  if post_body
-                   Elastic.client &.get(path: endpoint, body: post_body, headers: JSON_HEADER)
+                   Client.client &.get(path: endpoint, body: post_body, headers: JSON_HEADER)
                  else
-                   Elastic.client &.get(path: endpoint)
+                   Client.client &.get(path: endpoint)
                  end
                when "POST"
-                 Elastic.client &.post(path: path, body: post_body, headers: JSON_HEADER)
+                 Client.client &.post(path: path, body: post_body, headers: JSON_HEADER)
                when "PUT"
-                 Elastic.client &.put(path: path, body: post_body, headers: JSON_HEADER)
+                 Client.client &.put(path: path, body: post_body, headers: JSON_HEADER)
                when "DELETE"
                  endpoint = "#{path}?#{normalize_params(params)}"
-                 Elastic.client &.delete(path: endpoint)
+                 Client.client &.delete(path: endpoint)
                when "HEAD"
-                 Elastic.client &.head(path: path)
+                 Client.client &.head(path: path)
                else
                  raise "Unsupported method: #{method}"
                end
@@ -248,7 +274,7 @@ class LuckySearch::Elastic
 
   private JSON_HEADER = HTTP::Headers{"Content-Type" => "application/json"}
 
-  # Elastic Connection Pooling
+  # Client Connection Pooling
   #############################################################################
 
   protected class_getter pool : DB::Pool(PoolHTTP) {

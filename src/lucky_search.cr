@@ -12,7 +12,7 @@ macro luckySearchQuery(model)
     query = lucky_search_handler.query(q, params, filters)
     lucky_search_handler.search(query)
   end
-  def self.search(params = {} of Symbol => String, filters = nil)
+  def self.search(params = {} of Symbol => String, filters = nil) : NamedTuple(total: Int32, results: Array({{model}}))
     query = lucky_search_handler.query(params, filters)
     lucky_search_handler.search(query)
   end
@@ -25,7 +25,11 @@ macro luckySearchQuery(model)
     lucky_search_handler.query(params, filters)
   end
 
-  def self.search(query : LuckySearch::Query)
+  def self.search_empty_query
+    lucky_search_handler.query
+  end
+
+  def self.search(query : LuckySearch::Query) : NamedTuple(total: Int32, results: Array({{model}}))
     lucky_search_handler.search(query)
   end
 

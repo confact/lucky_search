@@ -101,19 +101,15 @@ jobs:
         if: steps.crystal-cache.outputs.cache-hit != 'true'
         run: shards check || shards install --ignore-crystal-version
 
-      - name: Install PostgreSQL client
+      - name: Run lucky task
         run: |
-          sudo apt-get update
-          sudo apt-get install --yes postgresql-client
-
-      - name: Setup database
-        run: |
-          psql -h localhost -U postgres -c 'CREATE DATABASE "lucky_search_test";'
-          psql -h localhost -U postgres -c 'CREATE TABLE basics ( id INT PRIMARY KEY, name VARCHAR(200) );'
-          psql -h localhost -U postgres -c 'CREATE TABLE goats ( id INT PRIMARY KEY, name VARCHAR(200), teeth INT, job VARCHAR(200) );'
-          psql -h localhost -U postgres -c 'CREATE TABLE children ( id INT PRIMARY KEY, visits TEXT, age INT, hoof_treatment VARCHAR(200), goat_id INT );'
+          lucky db:create 
+          lucky db:migrate
         env:
-          PGPASSWORD: postgres
+          LUCKY_ENV: test
+          DB_HOST: localhost
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
 
       - name: Run tests
         run: crystal spec

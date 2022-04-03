@@ -8,17 +8,17 @@ class LuckySearch::RecordIndexer
   # the data to index
   getter search_data : Hash(String, SearchValue)
 
-  getter client : Elastic
+  getter client : Client
 
   def initialize(@document_name)
     @id = 0
     @search_data = Hash(String, SearchValue).new
-    @client = Elastic.new
+    @client = Client.new
   end
 
   def initialize(@document_name, @id, search_data)
     @search_data = Hash(String, SearchValue).new.merge(search_data)
-    @client = Elastic.new
+    @client = Client.new
   end
 
   def self.document_name(klass : Class) : String

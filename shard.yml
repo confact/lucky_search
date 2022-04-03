@@ -20,3 +20,5 @@ development_dependencies:
   ameba:
     github: crystal-ameba/ameba
     version: ~> 0.13.0
+  lucky:
+    github: luckyframework/lucky

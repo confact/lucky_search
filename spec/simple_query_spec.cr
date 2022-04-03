@@ -1,6 +1,11 @@
 require "./spec_helper"
 
 describe LuckySearch::Query do
+  before_each do
+    LuckySearch::Client.new.delete_index("test_basics")
+    LuckySearch::Client.new.delete_index("test_children")
+    LuckySearch::Client.new.empty_indices
+  end
   it "builds an elasticsearch query" do
     query_body = BasicQuery.search_query_build
     query_body.keys.should eq({:query, :filter, :offset, :limit, :sort})

@@ -1,4 +1,4 @@
-require "./elastic"
+require "./client"
 require "./utils"
 
 class LuckySearch::SimpleQuery(T, K)
@@ -24,14 +24,14 @@ class LuckySearch::SimpleQuery(T, K)
   end
 
   # Yields the elasticsearch client
-  getter(client) { LuckySearch::Elastic.new }
+  getter(client) { LuckySearch::Client.new }
 
   # Safely build the query
   def query(params = {} of Symbol => String, filters = nil)
     builder = Query.new(params)
     builder.filter(filters) unless filters.nil?
 
-    builder.filter({TYPE => [elastic_document_name]})
+    #builder.filter({TYPE => [elastic_document_name]})
 
     builder
   end
@@ -41,13 +41,13 @@ class LuckySearch::SimpleQuery(T, K)
     builder = Query.new(params)
     builder.filter(filters) unless filters.nil?
 
-    builder.filter({TYPE => [elastic_document_name]})
+    #builder.filter({TYPE => [elastic_document_name]})
 
     builder
   end
 
   # Performs a count query against an index
-  def count(builder)
+  def count(builder = Query.new)
     query = generate_body(builder)
 
     # Simplify the query
