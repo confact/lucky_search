@@ -105,8 +105,8 @@ jobs:
         run: crystal build tasks.cr -o ./lucky_tasks
       - name: Run lucky task
         run: |
-          ./lucky_tasks db:create 
-          ./lucky_tasks db:migrate
+          ./lucky_tasks db.create 
+          ./lucky_tasks db.migrate
         env:
           LUCKY_ENV: test
           DB_HOST: localhost

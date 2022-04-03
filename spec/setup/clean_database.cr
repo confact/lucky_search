@@ -1,3 +1,3 @@
-#Spec.before_each do
+# Spec.before_each do
 #  AppDatabase.truncate
-#end
+# end
