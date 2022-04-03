@@ -21,10 +21,42 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
 
 ## Usage
 
+Add following
 ```crystal
 require "lucky_search"
 ```
 to the shards.cr
+
+### Settings
+We use ENV variables for the elasticsearch settings:
+- ELASTIC_URI                 - default: nil
+- ELASTIC_HOST                - default: 127.0.0.1
+- ELASTIC_PORT                - default: 9200
+- ELASTIC_TLS                 - default: false
+- ELASTIC_POOLED              - default: false
+- ELASTIC_CONN_POOL           - default: 10
+- ELASTIC_IDLE_POOL           - default: 10
+- ELASTIC_CONN_POOL_TIMEOUT   - default: 5.0
+
+You can also set this in a config file, like below:
+LuckySearch::Client.configure do |config|
+  config.uri = URI.parse("https://elastic:PrHfasu6fssfsd@localhost:9200")
+end
+
+config variables for the env above are:
+- uri
+- host
+- port
+- tls
+- pooled
+- pool_size
+- idle_pool_size
+- pool_timeout
+
+Good to know:
+- TLS will be automatically set to true if uri is set and the scheme is `https`
+- we support basic auth in the URI
+
 
 ### Operations and Model
 Add `include Searchable` to the operations for the models you want to add to elaticsearch. It adds hooks to update the index on saves and delete on delete.
@@ -57,12 +89,24 @@ Use existing query or create a new `SearchUser` query class.
 add `luckySearchQuery(model)` to the class, example below:
 
 ```crystal
-class UserQuery < Event::BaseQuery
-  luckySearchQuery(Event)
+class UserQuery < User::BaseQuery
+  luckySearchQuery(User)
 end
 ``` 
 
 You can now search by: `UserQuery.search("name")`
+
+### Advanced queries
+Our Query class and wrapper around it comes from [neuroplastic](https://github.com/place-labs/neuroplastic) and works similar, I have done some changes but works more or less the same.
+
+You take out a Query class and set the filters and so on and then send it in the search method:
+```crystal
+query = UserQuery.search_empty_query
+query.must({"visits" => ["monthly"]})
+records = UserQuery.search(query)
+```
+
+check more in the [Query documentation](https://confact.github.io/lucky_search/LuckySearch/Query.html)
 
 ## Development
 
@@ -80,3 +124,4 @@ run the tests with `crystal spec`
 ## Contributors
 
 - [Håkan Nylén](https://github.com/confact) - creator and maintainer
+- [Caspian Baska](https://github.com/Caspiano) - creator and maintainer of Neuroplastic which this is paste on

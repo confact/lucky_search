@@ -97,7 +97,6 @@ class LuckySearch::Client
     end
 
     Log.debug { "performing search: params=#{params} body=#{body.to_json}" }
-    puts "performing search: path=#{path} params=#{params} body=#{body.to_json}"
     perform_request(method: method, path: path, params: params, body: body)
   end
 
@@ -141,6 +140,13 @@ class LuckySearch::Client
     method = "HEAD"
 
     perform_request_bool(method: method, path: path)
+  end
+
+  def get(index, id)
+    path = "/#{index}/_doc/#{id}"
+    method = "GET"
+
+    perform_request(method: method, path: path)
   end
 
   def delete(index, id)

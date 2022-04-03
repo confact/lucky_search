@@ -20,6 +20,42 @@ describe LuckySearch::SimpleQuery do
       records[:results].size.should eq 1
     end
 
+    it "performs a generic search other order" do
+      # LuckySearch::RecordIndexer.new("test_basics").create_index
+      basic = BasicFactory.create
+      basic = SaveBasic.update!(basic, name: "test basic wuut")
+      indexed = LuckySearch::RecordIndexer.index(Basic, basic.id, basic.search_data)
+      indexed["_id"].should eq(basic.id.to_s)
+      LuckySearch::Client.new.refresh("test_basics")
+      records = BasicQuery.search("test wuut")
+      records[:total].should eq 1
+      records[:results].size.should eq 1
+    end
+
+    it "performs a partial search" do
+      # LuckySearch::RecordIndexer.new("test_basics").create_index
+      basic = BasicFactory.create
+      basic = SaveBasic.update!(basic, name: "test basic wuut")
+      indexed = LuckySearch::RecordIndexer.index(Basic, basic.id, basic.search_data)
+      indexed["_id"].should eq(basic.id.to_s)
+      LuckySearch::Client.new.refresh("test_basics")
+      records = BasicQuery.search("bas")
+      records[:total].should eq 1
+      records[:results].size.should eq 1
+    end
+
+    it "performs a search that should not give result" do
+      # LuckySearch::RecordIndexer.new("test_basics").create_index
+      basic = BasicFactory.create
+      basic = SaveBasic.update!(basic, name: "test basic wuut")
+      indexed = LuckySearch::RecordIndexer.index(Basic, basic.id, basic.search_data)
+      indexed["_id"].should eq(basic.id.to_s)
+      LuckySearch::Client.new.refresh("test_basics")
+      records = BasicQuery.search("martial art")
+      records[:total].should eq 0
+      records[:results].size.should eq 0
+    end
+
     # it "accepts a format block" do
     #  query = BasicQuery.search.query
     #  updated_name = "Ugg"
