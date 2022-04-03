@@ -188,9 +188,9 @@
   </svg>
 </a>lucky_search</h1>
 <p>This is a WIP - feel free to help out!</p>
-<p>Easy plugin and play elasticsearch library for Lucky framework. Highly inspired by <a href="https://github.com/ankane/searchkick">Searchkick</a> but are still lacking some of the advanced features searchkick have. Now you can just index and search.</p>
-<p>I also got a lot of help and borrowed code from <a href="https://github.com/place-labs/neuroplastic">neuroplastic</a> - Thank you Place Labs!
-I also borrowed some of the analysis from Searchkick to get stemming and so on. Thank you Searchkick!</p>
+<p>This is an easy Elasticsearch library for the Lucky framework. It is highly inspired by <a href="https://github.com/ankane/searchkick">Searchkick</a>, but it still lacks some of the advanced features that Searchkick has. Now you can just index and search.</p>
+<p>I also got a lot of help and borrowed code from <a href="https://github.com/place-labs/neuroplastic">neuroplastic</a> - Thank you, Place Labs!
+I also borrowed some of the analysis from Searchkick to get stemming. Thank you, Searchkick!</p>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -214,7 +214,7 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
 </a>Usage</h2>
 <p>Add following</p>
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;lucky_search&quot;</span></code></pre>
-<p>to the shards.cr</p>
+<p>To the shards.cr</p>
 <h3><a id="settings" class="anchor" href="#settings">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -237,7 +237,7 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
 <span class="k">end</span></code></pre>
 <p>config variables for the env above are:</p>
 <ul>
-<li>uri</li>
+<li>URI</li>
 <li>host</li>
 <li>port</li>
 <li>tls</li>
@@ -248,7 +248,7 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
 </ul>
 <p>Good to know:</p>
 <ul>
-<li>TLS will be automatically set to true if uri is set and the scheme is <code>https</code></li>
+<li>TLS will be automatically set to true if URI is set and the scheme is <code>https</code></li>
 <li>we support basic auth in the URI</li>
 </ul>
 <h3><a id="operations-and-model" class="anchor" href="#operations-and-model">
@@ -256,8 +256,8 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
     <use href="#octicon-link"/>
   </svg>
 </a>Operations and Model</h3>
-<p>Add <code>include <a href="Searchable.html">Searchable</a></code> to the operations for the models you want to add to elaticsearch. It adds hooks to update the index on saves and delete on delete.</p>
-<p>You also need to have a <code>search_data</code> method in the model class that returns an hash of data you want to index. Example:</p>
+<p>Add <code>include <a href="Searchable.html">Searchable</a></code> to the operations for the models you want to add to Elaticsearch. It adds hooks to update the index on saves and delete on delete.</p>
+<p>You also need to have a <code>search_data</code> method in the model class that returns a hash of data you want to index. Example:</p>
 <pre><code class="language-crystal">
 <span class="k">def</span> <span class="m">search_data</span>
   {
@@ -266,7 +266,7 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
     <span class="s">&quot;age&quot;</span> =&gt; age
   }
 <span class="k">end</span></code></pre>
-<p>Right now it has to be an flat data (no hash in the hash)</p>
+<p>Right now, it has to be flat data (no hash in the hash)</p>
 <p>index all your data:</p>
 <pre><code class="language-crystal">lucky search<span class="n">:reindex</span> user</code></pre>
 <h3><a id="query" class="anchor" href="#query">
@@ -274,8 +274,8 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
     <use href="#octicon-link"/>
   </svg>
 </a>Query</h3>
-<p>To do searches we use Lucky's query classes. We created a macro to generate methods for you.</p>
-<p>Use existing query or create a new <code>SearchUser</code> query class.</p>
+<p>To do searches, we use Lucky's query classes. We created a macro to generate methods for you.</p>
+<p>Use an existing query or create a new <code>SearchUser</code> query class.</p>
 <p>add <code><a href="toplevel.html#luckySearchQuery%28model%29-macro">luckySearchQuery(model)</a></code> to the class, example below:</p>
 <pre><code class="language-crystal"><span class="k">class</span> <span class="t">UserQuery</span> <span class="o">&lt;</span> <span class="t">User</span><span class="t">::</span><span class="t">BaseQuery</span>
   luckySearchQuery(<span class="t">User</span>)
@@ -286,7 +286,7 @@ I also borrowed some of the analysis from Searchkick to get stemming and so on. 
     <use href="#octicon-link"/>
   </svg>
 </a>Advanced queries</h3>
-<p>Our Query class and wrapper around it comes from <a href="https://github.com/place-labs/neuroplastic">neuroplastic</a> and works similar, I have done some changes but works more or less the same.</p>
+<p>Our Query class and wrapper around it comes from <a href="https://github.com/place-labs/neuroplastic">neuroplastic</a> and works similarly, I have done some changes, but it works more or less the same.</p>
 <p>You take out a Query class and set the filters and so on and then send it in the search method:</p>
 <pre><code class="language-crystal">query <span class="o">=</span> <span class="t">UserQuery</span>.search_empty_query
 query.must({<span class="s">&quot;visits&quot;</span> =&gt; [<span class="s">&quot;monthly&quot;</span>]})
@@ -297,7 +297,8 @@ records <span class="o">=</span> <span class="t">UserQuery</span>.search(query)<
     <use href="#octicon-link"/>
   </svg>
 </a>Development</h2>
-<p>install elasticsearch and the shards by <code>shards install</code>
+<p>Install Elasticsearch and the shards by <code>shards install</code>.
+You need to run migration for the test models from Avram by running <code>lucky db.create</code> and <code>lucky db.migrate.</code>
 run the tests with <code>crystal spec</code></p>
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
@@ -318,7 +319,7 @@ run the tests with <code>crystal spec</code></p>
 </a>Contributors</h2>
 <ul>
 <li><a href="https://github.com/confact">Håkan Nylén</a> - creator and maintainer</li>
-<li><a href="https://github.com/Caspiano">Caspian Baska</a> - creator and maintainer of Neuroplastic which this is paste on</li>
+<li><a href="https://github.com/Caspiano">Caspian Baska</a> - creator and maintainer of Neuroplastic, which this library is based on</li>
 </ul>
 </div>
 </body>
