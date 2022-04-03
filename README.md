@@ -2,10 +2,10 @@
 This is a WIP - feel free to help out!
 
 
-Easy plugin and play elasticsearch library for Lucky framework. Highly inspired by [Searchkick](https://github.com/ankane/searchkick) but are still lacking some of the advanced features searchkick have. Now you can just index and search.
+This is an easy Elasticsearch library for the Lucky framework. It is highly inspired by [Searchkick](https://github.com/ankane/searchkick), but it still lacks some of the advanced features that Searchkick has. Now you can just index and search.
 
-I also got a lot of help and borrowed code from [neuroplastic](https://github.com/place-labs/neuroplastic) - Thank you Place Labs!
-I also borrowed some of the analysis from Searchkick to get stemming and so on. Thank you Searchkick!
+I also got a lot of help and borrowed code from [neuroplastic](https://github.com/place-labs/neuroplastic) - Thank you, Place Labs!
+I also borrowed some of the analysis from Searchkick to get stemming. Thank you, Searchkick!
 
 ## Installation
 
@@ -25,7 +25,7 @@ Add following
 ```crystal
 require "lucky_search"
 ```
-to the shards.cr
+To the shards.cr
 
 ### Settings
 We use ENV variables for the elasticsearch settings:
@@ -46,7 +46,7 @@ end
 ```
 
 config variables for the env above are:
-- uri
+- URI
 - host
 - port
 - tls
@@ -56,15 +56,15 @@ config variables for the env above are:
 - pool_timeout
 
 Good to know:
-- TLS will be automatically set to true if uri is set and the scheme is `https`
+- TLS will be automatically set to true if URI is set and the scheme is `https`
 - we support basic auth in the URI
 
 
 ### Operations and Model
-Add `include Searchable` to the operations for the models you want to add to elaticsearch. It adds hooks to update the index on saves and delete on delete.
+Add `include Searchable` to the operations for the models you want to add to Elaticsearch. It adds hooks to update the index on saves and delete on delete.
 
 
-You also need to have a `search_data` method in the model class that returns an hash of data you want to index. Example:
+You also need to have a `search_data` method in the model class that returns a hash of data you want to index. Example:
 ```crystal
 
 def search_data
@@ -76,7 +76,7 @@ def search_data
 end
 ``` 
 
-Right now it has to be an flat data (no hash in the hash)
+Right now, it has to be flat data (no hash in the hash)
 
 index all your data:
 ```
@@ -84,9 +84,9 @@ lucky search:reindex user
 ```
 
 ### Query
-To do searches we use Lucky's query classes. We created a macro to generate methods for you.
+To do searches, we use Lucky's query classes. We created a macro to generate methods for you.
 
-Use existing query or create a new `SearchUser` query class.
+Use an existing query or create a new `SearchUser` query class.
 
 add `luckySearchQuery(model)` to the class, example below:
 
@@ -99,7 +99,7 @@ end
 You can now search by: `UserQuery.search("name")`
 
 ### Advanced queries
-Our Query class and wrapper around it comes from [neuroplastic](https://github.com/place-labs/neuroplastic) and works similar, I have done some changes but works more or less the same.
+Our Query class and wrapper around it comes from [neuroplastic](https://github.com/place-labs/neuroplastic) and works similarly, I have done some changes, but it works more or less the same.
 
 You take out a Query class and set the filters and so on and then send it in the search method:
 ```crystal
@@ -112,7 +112,8 @@ check more in the [Query documentation](https://confact.github.io/lucky_search/L
 
 ## Development
 
-install elasticsearch and the shards by `shards install`
+Install Elasticsearch and the shards by `shards install`.
+You need to run migration for the test models from Avram by running `lucky db.create` and `lucky db.migrate.`
 run the tests with `crystal spec` 
 
 ## Contributing
@@ -126,4 +127,4 @@ run the tests with `crystal spec`
 ## Contributors
 
 - [Håkan Nylén](https://github.com/confact) - creator and maintainer
-- [Caspian Baska](https://github.com/Caspiano) - creator and maintainer of Neuroplastic which this is paste on
+- [Caspian Baska](https://github.com/Caspiano) - creator and maintainer of Neuroplastic, which this library is based on
