@@ -94,6 +94,7 @@ jobs:
             ~/.cache/crystal
             bin/ameba
             lib
+            lucky_tasks
           key: ${{ runner.os }}-crystal-${{ matrix.crystal_version }}-${{ hashFiles('**/shard.yml') }}
           restore-keys: |
             ${{ runner.os }}-crystal-
@@ -101,7 +102,6 @@ jobs:
         if: steps.crystal-cache.outputs.cache-hit != 'true'
         run: shards check || shards install --ignore-crystal-version
       - name: Build lucky_tasks
-        if: steps.crystal-cache.outputs.cache-hit != 'true'
         run: crystal build tasks.cr -o ./lucky_tasks
       - name: Run lucky task
         run: |
