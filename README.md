@@ -75,24 +75,35 @@ def search_data
   }
 end
 ``` 
-
 Right now, it has to be flat data (no hash in the hash)
 
-index all your data:
+### Reindex whole table task
+
+Create a new task and change the call method to contain:
+```crystal
+name "search.reindex"
+def call
+  lucky_search_reindex(Model)
+end
 ```
-lucky search:reindex user
+`Model` being the model class you want to reindex.
+
+call the task 
+```bash
+lucky search:reindex
 ```
+`search:reindex`  being the name of the task you created above.
 
 ### Query
 To do searches, we use Lucky's query classes. We created a macro to generate methods for you.
 
 Use an existing query or create a new `SearchUser` query class.
 
-add `luckySearchQuery(model)` to the class, example below:
+add `add_lucky_search(model)` to the class, example below:
 
 ```crystal
 class UserQuery < User::BaseQuery
-  luckySearchQuery(User)
+  add_lucky_search(User)
 end
 ``` 
 
