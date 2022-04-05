@@ -1,13 +1,13 @@
 require "../spec_helper"
 
 class BasicQuery < Basic::BaseQuery
-  luckySearchQuery(Basic)
+  add_lucky_search(Basic)
 end
 
 class GoatQuery < Goat::BaseQuery
-  luckySearchQuery(Goat)
+  add_lucky_search(Goat)
 end
 
 class ChildQuery < Child::BaseQuery
-  luckySearchQuery(Child)
+  add_lucky_search(Child)
 end
