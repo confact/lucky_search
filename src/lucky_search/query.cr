@@ -1,7 +1,7 @@
 module LuckySearch
   class Query
     alias Sort = Hash(String, NamedTuple(order: Symbol)) | String | Hash(String, String)
-    alias FilterValue = Array(Int32) | Array(Float32) | Array(Bool) | Array(String) | Nil
+    alias FilterValue = Array(Int32) | Array(Int64) | Array(Float32) | Array(Bool) | Array(String) | Nil
     alias Filter = Hash(String, FilterValue)
 
     getter search : String
@@ -283,7 +283,7 @@ module LuckySearch
       end
     end
 
-    alias FilterTerm = Hash(String, (Int32 | Float32 | Bool | String))
+    alias FilterTerm = Hash(String, (Int32 | Int64 | Float32 | Bool | String))
 
     protected def missing_term_filter(key)
       sub = Subfilter.new
