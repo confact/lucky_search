@@ -267,8 +267,20 @@ I also borrowed some of the analysis from Searchkick to get stemming. Thank you,
   }
 <span class="k">end</span></code></pre>
 <p>Right now, it has to be flat data (no hash in the hash)</p>
-<p>index all your data:</p>
-<pre><code class="language-crystal">lucky search<span class="n">:reindex</span> user</code></pre>
+<h3><a id="reindex-whole-table-task" class="anchor" href="#reindex-whole-table-task">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Reindex whole table task</h3>
+<p>Create a new task and change the call method to contain:</p>
+<pre><code class="language-crystal">name <span class="s">&quot;search.reindex&quot;</span>
+<span class="k">def</span> <span class="m">call</span>
+  lucky_search_reindex(<span class="t">Model</span>)
+<span class="k">end</span></code></pre>
+<p><code>Model</code> being the model class you want to reindex.</p>
+<p>call the task</p>
+<pre><code class="language-bash">lucky search:reindex</code></pre>
+<p><code>search:reindex</code>  being the name of the task you created above.</p>
 <h3><a id="query" class="anchor" href="#query">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -276,9 +288,9 @@ I also borrowed some of the analysis from Searchkick to get stemming. Thank you,
 </a>Query</h3>
 <p>To do searches, we use Lucky's query classes. We created a macro to generate methods for you.</p>
 <p>Use an existing query or create a new <code>SearchUser</code> query class.</p>
-<p>add <code><a href="toplevel.html#luckySearchQuery%28model%29-macro">luckySearchQuery(model)</a></code> to the class, example below:</p>
+<p>add <code><a href="toplevel.html#add_lucky_search%28model%29-macro">add_lucky_search(model)</a></code> to the class, example below:</p>
 <pre><code class="language-crystal"><span class="k">class</span> <span class="t">UserQuery</span> <span class="o">&lt;</span> <span class="t">User</span><span class="t">::</span><span class="t">BaseQuery</span>
-  luckySearchQuery(<span class="t">User</span>)
+  add_lucky_search(<span class="t">User</span>)
 <span class="k">end</span></code></pre>
 <p>You can now search by: <code>UserQuery.search(&quot;name&quot;)</code></p>
 <h3><a id="advanced-queries" class="anchor" href="#advanced-queries">
