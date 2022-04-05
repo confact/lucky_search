@@ -2,6 +2,7 @@ require "uuid"
 require "avram"
 
 class LuckySearch::RecordIndexer
+  Log = Log.for(self)
   getter document_name : String
   getter id : Int64 | UUID
 
